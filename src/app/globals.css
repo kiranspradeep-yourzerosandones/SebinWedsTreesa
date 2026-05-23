@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Malayalam:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-burgundy: #6B2D44;
+  --color-burgundy-light: #8B3D5A;
+  --color-burgundy-dark: #4A1F30;
+  --color-champagne: #D8B26E;
+  --color-champagne-light: #E8C98A;
+  --color-champagne-dark: #B8924E;
+  --color-ivory: #FAF7F2;
+  --color-blush: #F6E8E6;
+  --color-warm-white: #FCFCFC;
+
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-malayalam: 'Noto Sans Malayalam', sans-serif;
+}
+
+/* ─── CSS Custom Properties ─────────────────────────────── */
+:root {
+  --burgundy: #6B2D44;
+  --burgundy-light: #8B3D5A;
+  --burgundy-dark: #4A1F30;
+  --champagne: #D8B26E;
+  --champagne-light: #E8C98A;
+  --champagne-dark: #B8924E;
+  --ivory: #FAF7F2;
+  --blush: #F6E8E6;
+  --warm-white: #FCFCFC;
+  --text-primary: #2A2A2A;
+  --text-secondary: #666666;
+  --text-light: #8C8C8C;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #FAF7F2;
+  color: #2A2A2A;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography Utilities ───────────────────────────────── */
+.font-cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-malayalam {
+  font-family: 'Noto Sans Malayalam', sans-serif;
+}
+
+/* ─── Scrollbar Styling ──────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6B2D44;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B3D5A;
+}
+
+/* ─── Selection ──────────────────────────────────────────── */
+::selection {
+  background-color: #6B2D44;
+  color: white;
+}
+
+/* ─── Section Padding Utility ────────────────────────────── */
+.section-padding {
+  padding: 80px 20px;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 100px 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 120px 80px;
+  }
+}
+
+/* ─── Decorative Divider ─────────────────────────────────── */
+.gold-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #D8B26E,
+    transparent
+  );
+  margin: 0 auto;
+}
+
+.gold-divider-full {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #D8B26E,
+    transparent
+  );
+}
+
+/* ─── Focus Visible ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #6B2D44;
+  outline-offset: 3px;
+}
+
+/* ─── Reduce Motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
