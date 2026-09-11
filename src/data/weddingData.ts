@@ -1,24 +1,31 @@
 export const weddingData = {
   couple: {
-    groomFirstName: "Anson",
-    groomLastName: "Pynadath",
-    groomFullName: "Anson Pynadath",
-    brideFirstName: "Minu",
-    brideLastName: "Peter",
-    brideFullName: "Minu Peter",
+    groomFirstName: "Sebin",
+    groomLastName: "Joseph",
+    groomFullName: "Sebin Joseph",
+    brideFirstName: "Treesa",
+    brideLastName: "Maria John",
+    brideFullName: "Treesa Maria John",
   },
 
   event: {
-    name: "മധുരം വെപ്പ്",
-    nameEnglish: "Madhuram Veppu",
-    date: "16 August 2026",
-    dateISO: "2026-08-16T18:00:00",
-    day: "Sunday",
-    time: "6:00 PM",
+    name: "മിന്നുകെട്ട്",
+    nameEnglish: "Minnukettu",
+    date: "02 November 2026",
+    dateISO: "2026-11-02T16:00:00",
+    day: "Monday",
+    time: "4:00 PM",
+
     venue: {
-      name: "Enchakal house",
-      address: "Enchakal house kalady",
-      mapsUrl: " https://maps.app.goo.gl/NWvdoUtBFxSWHzhD7?g_st=iw",
+      name: "St. Dominic's Cathedral",
+      address: "Kanjirappally",
+      mapsUrl: "",
+    },
+
+    reception: {
+      name: "Maha Jubilee Hall",
+      address: "Kanjirappally",
+      mapsUrl: "",
     },
   },
 
@@ -26,41 +33,44 @@ export const weddingData = {
     groom: {
       side: "Groom",
       parents: {
-        father: "Mr. Jaison Antony",
-        mother: "Mrs. Alice Jaison",
+        father: "Mr. Joseph Xavier",
+        mother: "Mrs. Lovely Joseph",
       },
-      houseName: "Pynadath House",
-      houseAddress: "Opp. Sanjoe Bhavan, Karukutty",
-      location: "Angamaly, Kerala",
+      houseName: "Mattaparambil (H)",
+      houseAddress: "Kuttikkanam",
+      location: "",
     },
+
     bride: {
       side: "Bride",
       parents: {
-        father: "Mr. Peter Joseph",
-        mother: "Mrs. Sheby Peter",
+        father: "Mr. John Sebastian",
+        mother: "Mrs. Siji John",
       },
-      houseName: "Enchackal House",
-      houseAddress: "Kaippattoor",
-      location: "Kalady, Kerala",
+      houseName: "PULPEL (H)",
+      houseAddress: "KOOVAPPALLY",
+      location: "",
     },
   },
 
   verse: {
-    english: "I have found one whom my soul loves",
-    malayalam: "എൻ ആത്മാവ് സ്നേഹിച്ചവനെ ഞാൻ കണ്ടെത്തി",
-    reference: "Song of Solomon 3:4",
+    english:
+      "And now these three remain: faith, hope and love. But the greatest of these is love.",
+    malayalam:
+      "ഇപ്പോൾ ഇവ മൂന്നും നിലനിൽക്കുന്നു: വിശ്വാസം, പ്രത്യാശ, സ്നേഹം; ഇവയിൽ ഏറ്റവും വലിയത് സ്നേഹം തന്നേ.",
+    reference: "1 Corinthians 13:13",
   },
 
   hosts: {
-    name1: "Alphin Pynadath",
-    name2: "Midhu Peter",
+    name1: "Mr. Joseph Xavier",
+    name2: "Mrs. Lovely Joseph",
     tagline: "Sharing our happiness with love & gratitude",
   },
 
   meta: {
-    title: "Anson & Minu — മധുരം വെപ്പ്",
+    title: "Sebin & Treesa — മിന്നുകെട്ട്",
     description:
-      "Join us for the Madhuram Veppu celebration of Anson Pynadath & Minu Peter on 16 August 2026 at Our Lady of Dolours Church, Kaippattoor.",
-    url: "https://anson-minu.vercel.app",
+      "Join us for the wedding celebration of Sebin & Treesa on 02 November 2026 at St. Dominic's Cathedral, Kanjirappally.",
+    url: "",
   },
 };

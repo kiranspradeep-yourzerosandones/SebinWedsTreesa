@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, FormEvent } from "react";
@@ -11,10 +12,11 @@ interface Wish {
   timestamp: number;
 }
 
-const STORAGE_KEY = "anson-minu-wishes";
+const STORAGE_KEY = "sebin-treesa-wishes";
 
 function getDefaultWishes(): Wish[] {
   const now = Date.now();
+
   return [
     {
       id: "default-1",
@@ -33,6 +35,7 @@ function getDefaultWishes(): Wish[] {
 
 function getStoredWishes(): Wish[] {
   if (typeof window === "undefined") return [];
+
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -43,6 +46,7 @@ function getStoredWishes(): Wish[] {
 
 function storeWish(wish: Wish) {
   if (typeof window === "undefined") return;
+
   try {
     const existing = getStoredWishes();
     existing.unshift(wish);
@@ -156,7 +160,7 @@ export default function Wishes() {
             className="text-[#666666] text-sm mt-3 max-w-sm mx-auto leading-relaxed"
             style={{ fontFamily: "'Poppins', sans-serif" }}
           >
-            Leave a little blessing for Anson & Minu
+            Leave a little blessing for Sebin & Treesa
           </p>
 
           <div className="w-12 h-[1px] bg-[#D8B26E] mx-auto mt-6" />
@@ -297,3 +301,4 @@ export default function Wishes() {
     </section>
   );
 }
+

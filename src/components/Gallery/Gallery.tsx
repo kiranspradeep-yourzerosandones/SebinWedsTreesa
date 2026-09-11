@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
@@ -10,14 +11,14 @@ import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
-  { id: 1, src: "/images/gallery/photo-1.jpeg", alt: "Anson & Minu — Together", aspect: "tall" as const },
-  { id: 2, src: "/images/gallery/photo-2.jpeg", alt: "Anson & Minu — Smiling", aspect: "wide" as const },
-  { id: 3, src: "/images/gallery/photo-3.jpeg", alt: "Anson & Minu — Candid", aspect: "square" as const },
-  { id: 4, src: "/images/gallery/photo-8.jpeg", alt: "Anson & Minu — Portrait", aspect: "tall" as const },
-  { id: 5, src: "/images/gallery/photo-5.jpeg", alt: "Anson & Minu — Family", aspect: "wide" as const },
-  { id: 6, src: "/images/gallery/photo-7.jpeg", alt: "Anson & Minu — Ceremony", aspect: "square" as const },
-  { id: 7, src: "/images/gallery/photo-6.jpeg", alt: "Anson & Minu — Joy", aspect: "tall" as const },
-  { id: 8, src: "/images/gallery/photo-4.jpeg", alt: "Anson & Minu — Love", aspect: "square" as const },
+  { id: 1, src: "/images/gallery/photo-5.jpeg", alt: "Sebin & Treesa — Together", aspect: "tall" as const },
+  { id: 2, src: "/images/gallery/photo-2.jpeg", alt: "Sebin & Treesa — Smiling", aspect: "wide" as const },
+  { id: 3, src: "/images/gallery/photo-10.jpeg", alt: "Sebin & Treesa — Candid", aspect: "square" as const },
+  { id: 4, src: "/images/gallery/photo-6.jpeg", alt: "Sebin & Treesa — Portrait", aspect: "tall" as const },
+  // { id: 5, src: "/images/gallery/photo-5.jpeg", alt: "Sebin & Treesa — Family", aspect: "wide" as const },
+  // { id: 6, src: "/images/gallery/photo-7.jpeg", alt: "Sebin & Treesa — Ceremony", aspect: "square" as const },
+  // { id: 7, src: "/images/gallery/photo-6.jpeg", alt: "Sebin & Treesa — Joy", aspect: "tall" as const },
+  // { id: 8, src: "/images/gallery/photo-4.jpeg", alt: "Sebin & Treesa — Love", aspect: "square" as const },
 ];
 
 function getAspectHeight(aspect: "tall" | "wide" | "square"): string {
@@ -73,12 +74,15 @@ export default function Gallery() {
   // Keyboard navigation
   useEffect(() => {
     if (!lightboxOpen) return;
+
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowRight") goNext();
       if (e.key === "ArrowLeft") goPrev();
     };
+
     window.addEventListener("keydown", handler);
+
     return () => window.removeEventListener("keydown", handler);
   }, [lightboxOpen, closeLightbox, goNext, goPrev]);
 
@@ -96,12 +100,14 @@ export default function Gallery() {
         <p className="text-[#D8B26E] text-xs tracking-[0.25em] uppercase mb-4">
           Our Moments
         </p>
+
         <h2
           className="text-[#6B2D44] text-4xl"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           Gallery
         </h2>
+
         <div className="w-12 h-[1px] bg-[#D8B26E] mx-auto mt-6" />
       </motion.div>
 
@@ -132,7 +138,7 @@ export default function Gallery() {
                       image.aspect
                     )} rounded-xl overflow-hidden cursor-pointer group`}
                   >
-                    {/* ✅ Actual image */}
+                    {/* Actual image */}
                     <Image
                       src={image.src}
                       alt={image.alt}
@@ -238,3 +244,4 @@ export default function Gallery() {
     </section>
   );
 }
+

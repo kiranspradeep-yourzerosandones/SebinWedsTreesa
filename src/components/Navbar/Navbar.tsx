@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -20,7 +21,9 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -36,6 +39,7 @@ export default function Navbar() {
     } else {
       document.body.style.overflow = "";
     }
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -67,21 +71,23 @@ export default function Navbar() {
               }`}
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
-              A
+              S
             </span>
+
             <span
               className="text-[#D8B26E] text-xs"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               &
             </span>
+
             <span
               className={`text-xl sm:text-2xl font-light transition-colors ${
                 scrolled ? "text-[#6B2D44]" : "text-[#6B2D44]"
               }`}
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
-              M
+              T
             </span>
           </a>
 
@@ -95,6 +101,7 @@ export default function Navbar() {
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
                 {item.label}
+
                 <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#D8B26E] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
@@ -141,14 +148,16 @@ export default function Navbar() {
                 className="text-xl font-light text-[#6B2D44]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                A
+                S
               </span>
+
               <span className="text-[#D8B26E] text-xs">&</span>
+
               <span
                 className="text-xl font-light text-[#6B2D44]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                M
+                T
               </span>
             </motion.div>
 
@@ -178,17 +187,19 @@ export default function Navbar() {
               transition={{ delay: 0.6 }}
             >
               <div className="w-12 h-[1px] bg-[#D8B26E]/40" />
+
               <p
                 className="text-[#8C8C8C] text-[10px] tracking-[0.25em] uppercase"
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
-                Anson & Minu
+                Sebin & Treesa
               </p>
+
               <p
                 className="text-[#D8B26E] text-base"
                 style={{ fontFamily: "'Noto Sans Malayalam', sans-serif" }}
               >
-                മധുരം വെപ്പ്
+                മിന്നുകെട്ട്
               </p>
             </motion.div>
           </motion.div>

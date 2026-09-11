@@ -1,4 +1,6 @@
+
 import nodemailer from "nodemailer";
+import { weddingData } from "@/data/weddingData";
 
 interface RSVPData {
   name: string;
@@ -24,8 +26,16 @@ const transporter = nodemailer.createTransport({
 export async function sendRSVPEmail(data: RSVPData) {
   const { name, phone, guests, attending, message } = data;
 
-  const attendingText = attending === "yes" ? "✅ Will Attend" : "❌ Cannot Attend";
-  const guestText = `${guests} ${Number(guests) === 1 ? "guest" : "guests"}`;
+  const { couple, event, meta } = weddingData;
+
+  const attendingText =
+    attending === "yes" ? "✅ Will Attend" : "❌ Cannot Attend";
+
+  const guestText = `${guests} ${
+    Number(guests) === 1 ? "guest" : "guests"
+  }`;
+
+  const coupleName = `${couple.groomFirstName} & ${couple.brideFirstName}`;
 
   const htmlContent = `
     <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 500px; margin: 0 auto; background: #FAF7F2; border-radius: 12px; overflow: hidden; border: 1px solid #D8B26E33;">
@@ -35,14 +45,16 @@ export async function sendRSVPEmail(data: RSVPData) {
         <h1 style="color: white; font-size: 20px; margin: 0; letter-spacing: 2px;">
           NEW RSVP
         </h1>
+
         <p style="color: #D8B26E; font-size: 12px; margin: 8px 0 0 0; letter-spacing: 1px;">
-          Anson & Minu — മധുരം വെപ്പ്
+          ${coupleName} — ${event.nameEnglish}
         </p>
       </div>
 
       <!-- Content -->
       <div style="padding: 24px;">
         <table style="width: 100%; border-collapse: collapse;">
+          
           <tr>
             <td style="padding: 10px 0; color: #8C8C8C; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; width: 100px; vertical-align: top;">
               Name
@@ -51,6 +63,7 @@ export async function sendRSVPEmail(data: RSVPData) {
               ${name}
             </td>
           </tr>
+
           <tr>
             <td style="padding: 10px 0; color: #8C8C8C; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; vertical-align: top;">
               Phone
@@ -59,6 +72,7 @@ export async function sendRSVPEmail(data: RSVPData) {
               ${phone}
             </td>
           </tr>
+
           <tr>
             <td style="padding: 10px 0; color: #8C8C8C; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; vertical-align: top;">
               Status
@@ -67,6 +81,7 @@ export async function sendRSVPEmail(data: RSVPData) {
               ${attendingText}
             </td>
           </tr>
+
           <tr>
             <td style="padding: 10px 0; color: #8C8C8C; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; vertical-align: top;">
               Guests
@@ -75,6 +90,7 @@ export async function sendRSVPEmail(data: RSVPData) {
               ${guestText}
             </td>
           </tr>
+
           ${
             message
               ? `
@@ -89,22 +105,25 @@ export async function sendRSVPEmail(data: RSVPData) {
           `
               : ""
           }
+
         </table>
       </div>
 
       <!-- Footer -->
       <div style="background: #F6E8E6; padding: 16px; text-align: center;">
         <p style="color: #8C8C8C; font-size: 11px; margin: 0;">
-          Received from anson-minu.vercel.app
+          Received from ${meta.url.replace(/^https?:\/\//, "")}
         </p>
       </div>
+
     </div>
   `;
 
   await transporter.sendMail({
-    from: `"Anson & Minu Wedding" <${process.env.SMTP_USER}>`,
+    from: `"${coupleName} Wedding" <${process.env.SMTP_USER}>`,
     to: process.env.RSVP_TO_EMAIL || "",
-    subject: `${attendingText} — ${name} | Madhuram Veppu RSVP`,
+    subject: `${attendingText} — ${name} | ${event.nameEnglish} RSVP`,
     html: htmlContent,
   });
 }
+

@@ -108,6 +108,7 @@ export default function Footer() {
           >
             &ldquo;{verse.english}&rdquo;
           </p>
+
           <p
             className="text-[#D8B26E]/50 text-[10px] tracking-[0.2em] uppercase"
             style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -135,6 +136,7 @@ export default function Footer() {
         >
           <div className="flex items-center gap-2">
             <Calendar size={13} className="text-[#D8B26E]/60" />
+
             <p
               className="text-white/50 text-xs tracking-[0.1em]"
               style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -147,6 +149,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-2">
             <Clock size={13} className="text-[#D8B26E]/60" />
+
             <p
               className="text-white/50 text-xs tracking-[0.1em]"
               style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -159,6 +162,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-2">
             <MapPin size={13} className="text-[#D8B26E]/60" />
+
             <p
               className="text-white/50 text-xs tracking-[0.1em]"
               style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -227,7 +231,12 @@ export default function Footer() {
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.85, type: "spring", stiffness: 200 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.85,
+            type: "spring",
+            stiffness: 200,
+          }}
         >
           <Heart
             size={20}
@@ -247,7 +256,7 @@ export default function Footer() {
           >
             With love,{" "}
             <span className="text-white/35">
-              Anson & Minu
+              {couple.groomFirstName} & {couple.brideFirstName}
             </span>
           </p>
 
