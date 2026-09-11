@@ -49,7 +49,7 @@ export default function Home() {
         <Gallery />
 
         <SectionDivider variant="simple" color="ivory" />
-        <RSVP />
+     
 
         <Wishes />
 

@@ -103,28 +103,44 @@ export default function Wishes() {
   }, []);
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!name.trim() || !message.trim()) return;
+  if (!name.trim() || !message.trim()) return;
 
-    const newWish: Wish = {
-      id: `wish-${Date.now()}`,
-      name: name.trim(),
-      message: message.trim(),
-      timestamp: Date.now(),
-    };
+  const whatsappNumber = "919744996592";
 
-    storeWish(newWish);
-    setWishes((prev) => [newWish, ...prev]);
-    setName("");
-    setMessage("");
-    setSubmitted(true);
+  const whatsappMessage = `Wishes for Sebin & Treesa
 
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 3000);
+From: ${name.trim()}
+
+Message: ${message.trim()}
+
+— Sent from the Sebin & Treesa Wedding Website`;
+
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
+
+  window.open(whatsappUrl, "_blank");
+
+  // Keep the wish displayed locally on the website
+  const newWish: Wish = {
+    id: `wish-${Date.now()}`,
+    name: name.trim(),
+    message: message.trim(),
+    timestamp: Date.now(),
   };
 
+  storeWish(newWish);
+  setWishes((prev) => [newWish, ...prev]);
+  setName("");
+  setMessage("");
+  setSubmitted(true);
+
+  setTimeout(() => {
+    setSubmitted(false);
+  }, 3000);
+};
   return (
     <section className="section-padding bg-[#F6E8E6]/30 relative overflow-hidden">
       {/* Background decoration */}

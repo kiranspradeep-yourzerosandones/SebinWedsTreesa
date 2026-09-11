@@ -17,10 +17,11 @@ export const weddingData = {
     time: "4:00 PM",
 
     venue: {
-      name: "St. Dominic's Cathedral",
-      address: "Kanjirappally",
-      mapsUrl: "",
-    },
+  name: "St. Dominic's Cathedral",
+  address: "Kanjirappally",
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=St.+Dominic's+Cathedral+Church,+Kanjirappally,+Kerala",
+},
 
     reception: {
       name: "Maha Jubilee Hall",
@@ -47,7 +48,7 @@ export const weddingData = {
         father: "Mr. John Sebastian",
         mother: "Mrs. Siji John",
       },
-      houseName: "PULPEL (H)",
+      houseName: "Pulpel (H)",
       houseAddress: "KOOVAPPALLY",
       location: "",
     },
@@ -62,8 +63,8 @@ export const weddingData = {
   },
 
   hosts: {
-    name1: "Mr. Joseph Xavier",
-    name2: "Mrs. Lovely Joseph",
+    name1: "Sandra Mary Joseph",
+    name2: "Sreya Joseph",
     tagline: "Sharing our happiness with love & gratitude",
   },
 

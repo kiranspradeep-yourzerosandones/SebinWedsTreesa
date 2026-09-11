@@ -10,7 +10,6 @@ const navItems = [
   { label: "Family", href: "#family" },
   { label: "Event", href: "#event" },
   { label: "Gallery", href: "#gallery" },
-  { label: "RSVP", href: "#rsvp" },
 ];
 
 export default function Navbar() {

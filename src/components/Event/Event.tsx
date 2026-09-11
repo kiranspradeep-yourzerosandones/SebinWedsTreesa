@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion, Variants } from "framer-motion";
@@ -59,8 +60,7 @@ export default function Event() {
           <h2
             className="text-[#6B2D44] text-3xl sm:text-4xl md:text-5xl mb-3"
             style={{
-              fontFamily:
-                "'Noto Sans Malayalam', sans-serif",
+              fontFamily: "'Noto Sans Malayalam', sans-serif",
             }}
           >
             {event.name}
@@ -69,8 +69,7 @@ export default function Event() {
           <p
             className="text-[#666666] text-sm sm:text-base italic"
             style={{
-              fontFamily:
-                "'Cormorant Garamond', serif",
+              fontFamily: "'Cormorant Garamond', serif",
             }}
           >
             {event.nameEnglish}
@@ -93,8 +92,7 @@ export default function Event() {
           <p
             className="text-[#6B2D44]/70 text-base sm:text-lg md:text-xl italic font-light leading-relaxed"
             style={{
-              fontFamily:
-                "'Cormorant Garamond', serif",
+              fontFamily: "'Cormorant Garamond', serif",
             }}
           >
             &ldquo;{verse.english}&rdquo;
@@ -105,8 +103,8 @@ export default function Event() {
           </p>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-10">
+        {/* Event Details Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
 
           {[
             {
@@ -125,6 +123,8 @@ export default function Event() {
               icon: MapPin,
               label: "Venue",
               value: event.venue.name,
+              sub: event.venue.address,
+              mapsUrl: event.venue.mapsUrl,
             },
           ].map((item, index) => {
             const Icon = item.icon;
@@ -142,6 +142,7 @@ export default function Event() {
                   margin: "-60px",
                 }}
               >
+                {/* Icon */}
                 <div className="flex justify-center mb-4">
                   <div className="w-10 h-10 rounded-full bg-[#6B2D44]/8 flex items-center justify-center">
                     <Icon
@@ -151,77 +152,51 @@ export default function Event() {
                   </div>
                 </div>
 
+                {/* Label */}
                 <p className="text-[#D8B26E] text-[10px] tracking-[0.2em] uppercase mb-2">
                   {item.label}
                 </p>
 
+                {/* Value */}
                 <p
                   className="text-[#6B2D44] text-xl sm:text-2xl font-medium mb-1"
                   style={{
-                    fontFamily:
-                      "'Cormorant Garamond', serif",
+                    fontFamily: "'Cormorant Garamond', serif",
                   }}
                 >
                   {item.value}
                 </p>
 
-                <p className="text-[#8C8C8C] text-xs">
+                {/* Address / Day */}
+                <p className="text-[#8C8C8C] text-xs mb-4">
                   {item.sub}
                 </p>
+
+                {/* Google Maps button — Venue only */}
+                {"mapsUrl" in item && item.mapsUrl && (
+                  <motion.a
+                    href={item.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#6B2D44] text-white text-[10px] uppercase tracking-wide px-5 py-2.5 rounded-sm hover:bg-[#8B3D5A] transition-colors"
+                    whileHover={{
+                      scale: 1.02,
+                    }}
+                    whileTap={{
+                      scale: 0.98,
+                    }}
+                  >
+                    <Navigation size={13} />
+                    Maps
+                  </motion.a>
+                )}
               </motion.div>
             );
           })}
         </div>
 
-        {/* Venue */}
-        <motion.div
-          className="bg-white/60 backdrop-blur-sm border border-[#D8B26E]/20 rounded-2xl p-6 sm:p-8 text-center"
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.4,
-          }}
-        >
-          <p className="text-[#D8B26E] text-[10px] tracking-[0.25em] uppercase mb-3">
-            Venue Address
-          </p>
-
-          <h3 className="text-[#6B2D44] text-xl sm:text-2xl font-medium">
-            {event.venue.name}
-          </h3>
-
-          <p className="text-[#8C8C8C] text-sm mb-6">
-            {event.venue.address}
-          </p>
-
-          <motion.a
-            href={event.venue.mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#6B2D44] text-white text-xs uppercase px-8 py-3 rounded-sm hover:bg-[#8B3D5A]"
-            whileHover={{
-              scale: 1.02,
-            }}
-            whileTap={{
-              scale: 0.98,
-            }}
-          >
-            <Navigation size={14} />
-            Open in Google Maps
-          </motion.a>
-        </motion.div>
-
       </div>
     </section>
   );
 }
+
