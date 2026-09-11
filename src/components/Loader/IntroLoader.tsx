@@ -251,7 +251,7 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
                         }}
                         className="mb-4"
                       >
-                        <TopOrnament />
+                        {/* <TopOrnament /> */}
                       </motion.div>
 
                       <motion.div
