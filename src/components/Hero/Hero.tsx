@@ -137,7 +137,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Top ornament */}
-          <motion.div
+          {/* <motion.div
             className="absolute top-5 sm:top-7 left-1/2 -translate-x-1/2 z-20"
             initial={{
               opacity: 0,
@@ -155,7 +155,7 @@ export default function Hero() {
             }}
           >
             <TopOrnament />
-          </motion.div>
+          </motion.div> */}
 
           {/* ─── CONTENT ───
               z-40 keeps all text above the couple silhouette (z-30)

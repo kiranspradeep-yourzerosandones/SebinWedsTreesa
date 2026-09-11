@@ -49,7 +49,7 @@ export const weddingData = {
         mother: "Mrs. Siji John",
       },
       houseName: "Pulpel (H)",
-      houseAddress: "KOOVAPPALLY",
+      houseAddress: "Koovappally",
       location: "",
     },
   },
