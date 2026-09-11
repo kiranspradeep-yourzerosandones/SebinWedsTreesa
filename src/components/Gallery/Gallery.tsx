@@ -11,10 +11,10 @@ import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
-  { id: 1, src: "/images/gallery/photo-5.jpeg", alt: "Sebin & Treesa — Together", aspect: "tall" as const },
+  { id: 1, src: "/images/gallery/photo-3.jpeg", alt: "Sebin & Treesa — Together", aspect: "tall" as const },
   { id: 2, src: "/images/gallery/photo-2.jpeg", alt: "Sebin & Treesa — Smiling", aspect: "wide" as const },
-  { id: 3, src: "/images/gallery/photo-10.jpeg", alt: "Sebin & Treesa — Candid", aspect: "square" as const },
-  { id: 4, src: "/images/gallery/photo-6.jpeg", alt: "Sebin & Treesa — Portrait", aspect: "tall" as const },
+  { id: 3, src: "/images/gallery/photo-1.jpeg", alt: "Sebin & Treesa — Candid", aspect: "square" as const },
+  { id: 4, src: "/images/gallery/photo-5.jpeg", alt: "Sebin & Treesa — Portrait", aspect: "tall" as const },
   // { id: 5, src: "/images/gallery/photo-5.jpeg", alt: "Sebin & Treesa — Family", aspect: "wide" as const },
   // { id: 6, src: "/images/gallery/photo-7.jpeg", alt: "Sebin & Treesa — Ceremony", aspect: "square" as const },
   // { id: 7, src: "/images/gallery/photo-6.jpeg", alt: "Sebin & Treesa — Joy", aspect: "tall" as const },
