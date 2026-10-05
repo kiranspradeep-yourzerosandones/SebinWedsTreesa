@@ -27,6 +27,9 @@ export default function Home() {
     <>
       {!loaderDone && <IntroLoader onComplete={handleLoaderComplete} />}
 
+      {/* Put MusicToggle outside main so it can mount and listen immediately */}
+      <MusicToggle />
+
       <main
         className={`transition-opacity duration-700 ${
           loaderDone ? "opacity-100" : "opacity-0"
@@ -34,32 +37,20 @@ export default function Home() {
         style={{ pointerEvents: loaderDone ? "auto" : "none" }}
       >
         <Navbar />
-
         <Hero />
-
         <SectionDivider variant="dove" color="ivory" />
         <Family />
-
         <SectionDivider variant="cross" color="blush" />
         <Event />
-
         <Countdown />
-
         <SectionDivider variant="diamond" color="blush" />
         <Gallery />
-
         <SectionDivider variant="simple" color="ivory" />
-     
-
         <Wishes />
-
         <SectionDivider variant="dove" color="ivory" />
         <PersonalNote />
-
         <Footer />
-
         <FloatingButtons />
-        <MusicToggle />
       </main>
     </>
   );
