@@ -9,25 +9,55 @@ export default function MusicToggle() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    // Sync state with audioManager
+    // 1. Sync UI with core audio state
     const unsubscribe = audioManager.subscribe((playing) => {
       setIsPlaying(playing);
     });
 
+    // 2. Try to auto-play immediately on mount
+    audioManager.play();
+
+    // 3. Fallback: Listen for the very first click, tap, scroll, or key press anywhere on the site
+    const handleGlobalInteraction = () => {
+      if (!audioManager.isPlaying && !audioManager.userManuallyPaused) {
+        audioManager.play();
+      }
+    };
+
+    const events = ["click", "touchstart", "scroll", "keydown"];
+
+    // Use capture: true so that we intercept gestures even if other components try to stop propagation
+    events.forEach((evt) => {
+      window.addEventListener(evt, handleGlobalInteraction, { capture: true, passive: true });
+    });
+
+    // Clean up event listeners once music successfully starts playing
+    const checkPlayingAndCleanup = audioManager.subscribe((playing) => {
+      if (playing) {
+        events.forEach((evt) => {
+          window.removeEventListener(evt, handleGlobalInteraction, { capture: true });
+        });
+      }
+    });
+
     return () => {
       unsubscribe();
+      checkPlayingAndCleanup();
+      events.forEach((evt) => {
+        window.removeEventListener(evt, handleGlobalInteraction, { capture: true });
+      });
     };
   }, []);
 
   const handleToggle = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevents background click triggers
+    e.stopPropagation(); // Prevents triggering background interaction listeners
     audioManager.toggle();
   };
 
   return (
     <motion.button
       onClick={handleToggle}
-      className="fixed bottom-6 left-6 z-[120] w-12 h-12 rounded-full bg-white/95 backdrop-blur-md border border-[#D8B26E]/50 shadow-xl flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 group cursor-pointer"
+      className="fixed bottom-6 left-6 z-[120] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-[#D8B26E]/40 shadow-xl flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 group cursor-pointer"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
@@ -47,9 +77,9 @@ export default function MusicToggle() {
       {/* Icon */}
       <div className="relative pointer-events-none">
         {isPlaying ? (
-          <Music size={18} className="text-[#6B2D44] animate-pulse" />
+          <Music size={16} className="text-[#6B2D44] animate-pulse" />
         ) : (
-          <VolumeX size={18} className="text-[#6B2D44]/70" />
+          <VolumeX size={16} className="text-[#6B2D44]/70" />
         )}
       </div>
 
