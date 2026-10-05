@@ -12,7 +12,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { id: 1, src: "/images/gallery/photos-1.jpeg", alt: "Sebin & Treesa — Together", aspect: "tall" as const },
-  { id: 2, src: "/images/gallery/photos-3.jpeg", alt: "Sebin & Treesa — Smiling", aspect: "wide" as const },
+  { id: 2, src: "/images/gallery/photo-5.jpeg", alt: "Sebin & Treesa — Smiling", aspect: "wide" as const },
   { id: 3, src: "/images/gallery/photos-6.jpeg", alt: "Sebin & Treesa — Candid", aspect: "square" as const },
   { id: 4, src: "/images/gallery/photos-5.jpeg", alt: "Sebin & Treesa — Portrait", aspect: "tall" as const },
   // { id: 5, src: "/images/gallery/photo-5.jpeg", alt: "Sebin & Treesa — Family", aspect: "wide" as const },
