@@ -19,15 +19,11 @@ import SectionDivider from "@/components/ui/SectionDivider";
 export default function Home() {
   const [loaderDone, setLoaderDone] = useState(false);
 
-  const handleLoaderComplete = () => {
-    setLoaderDone(true);
-  };
-
   return (
     <>
-      {!loaderDone && <IntroLoader onComplete={handleLoaderComplete} />}
+      {!loaderDone && <IntroLoader onComplete={() => setLoaderDone(true)} />}
 
-      {/* Put MusicToggle outside main so it can mount and listen immediately */}
+      {/* Put MusicToggle here outside main so it's always accessible */}
       <MusicToggle />
 
       <main

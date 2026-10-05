@@ -30,15 +30,13 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
   useEffect(() => {
     setHasMounted(true);
 
-    // Subscribe to audio state
     const unsubscribe = audioManager.subscribe((playing) => {
       setIsMusicPlaying(playing);
     });
 
-    // 1. Try to play music automatically immediately on load
+    // Try auto-play immediately
     audioManager.play();
 
-    // Petals generation
     const newPetals: Petal[] = [...Array(8)].map((_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
@@ -66,9 +64,9 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
     };
   }, [onComplete, hasMounted]);
 
-  // If user taps anywhere on the loader screen, start audio immediately
+  // Only start audio on background tap if the user hasn't manually clicked pause
   const handleUserInteraction = () => {
-    if (!isMusicPlaying) {
+    if (!isMusicPlaying && !audioManager.userManuallyPaused) {
       audioManager.play();
     }
   };
@@ -89,8 +87,8 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
-          {/* ─── Gentle Prompt if Autoplay was blocked by browser ─── */}
-          {!isMusicPlaying && (
+          {/* Subtle Banner indicating tap to play if blocked by browser */}
+          {!isMusicPlaying && !audioManager.userManuallyPaused && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -107,7 +105,7 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
             </motion.div>
           )}
 
-          {/* ─── Falling Petals ─── */}
+          {/* Falling Petals */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
             {petals.map((petal) => (
               <motion.div
@@ -131,7 +129,7 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
             ))}
           </div>
 
-          {/* ═══ VERSE STAGE ═══ */}
+          {/* VERSE STAGE */}
           <AnimatePresence>
             {stage === "verse" && (
               <motion.div
@@ -143,10 +141,7 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
                   opacity: 0,
                   y: -120,
                   filter: "blur(10px)",
-                  transition: {
-                    duration: 0.9,
-                    ease: [0.65, 0, 0.35, 1],
-                  },
+                  transition: { duration: 0.9, ease: [0.65, 0, 0.35, 1] },
                 }}
                 transition={{ duration: 0.6 }}
               >
@@ -162,14 +157,8 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
                     className="text-[#6B2D44] text-lg sm:text-xl leading-relaxed mb-6"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.8,
-                      delay: 0.5,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    style={{
-                      fontFamily: "'Noto Sans Malayalam', sans-serif",
-                    }}
+                    transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ fontFamily: "'Noto Sans Malayalam', sans-serif" }}
                   >
                     {verse.malayalam}
                   </motion.p>
@@ -178,14 +167,8 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
                     className="text-[#2A2A2A] text-xl sm:text-2xl italic font-light leading-relaxed mb-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.8,
-                      delay: 0.8,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                    }}
+                    transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
                   >
                     &ldquo;{verse.english}&rdquo;
                   </motion.p>
@@ -194,14 +177,8 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
                     className="text-[#8C8C8C] text-xs tracking-[0.2em] uppercase"
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.7,
-                      delay: 1.1,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    style={{
-                      fontFamily: "'Poppins', sans-serif",
-                    }}
+                    transition={{ duration: 0.7, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
                   >
                     {verse.reference}
                   </motion.p>
@@ -217,7 +194,7 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
             )}
           </AnimatePresence>
 
-          {/* ═══ CARD STAGE ═══ */}
+          {/* CARD STAGE */}
           <AnimatePresence>
             {stage === "card" && (
               <motion.div
@@ -235,7 +212,6 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
                     filter: { duration: 0.6 },
                   }}
                 >
-                  {/* The Card */}
                   <div className="relative aspect-[9/16] sm:aspect-[10/16] bg-gradient-to-b from-[#F6E8E6]/80 via-[#FAF7F2] to-[#F6E8E6]/60 rounded-md overflow-hidden shadow-2xl">
                     <FloralCornerTop position="left" />
                     <FloralCornerTop position="right" />
@@ -371,7 +347,6 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
                     </div>
                   </div>
 
-                  {/* Glow */}
                   <motion.div
                     className="absolute -inset-4 bg-[#D8B26E]/5 blur-3xl -z-10"
                     initial={{ opacity: 0 }}
@@ -383,7 +358,6 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
             )}
           </AnimatePresence>
 
-          {/* Progress bar */}
           {stage === "card" && (
             <motion.div
               className="absolute bottom-6 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-[#D8B26E]/60 to-transparent w-32 z-30"
@@ -397,10 +371,6 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
     </AnimatePresence>
   );
 }
-
-/* ──────────────────────────────────────────────────────────
-   DECORATIVE SVG COMPONENTS
-────────────────────────────────────────────────────────── */
 
 function ArchFrame() {
   return (

@@ -3,6 +3,7 @@ class AudioManager {
   private audio: HTMLAudioElement | null = null;
   private listeners: Set<(playing: boolean) => void> = new Set();
   public isPlaying = false;
+  public userManuallyPaused = false;
 
   init() {
     if (typeof window === "undefined" || this.audio) return;
@@ -11,15 +12,15 @@ class AudioManager {
     this.audio.volume = 0.35;
     this.audio.preload = "auto";
 
-    this.audio.addEventListener("play", () => {
+    this.audio.onplay = () => {
       this.isPlaying = true;
       this.notify();
-    });
+    };
 
-    this.audio.addEventListener("pause", () => {
+    this.audio.onpause = () => {
       this.isPlaying = false;
       this.notify();
-    });
+    };
   }
 
   async play(): Promise<boolean> {
@@ -28,6 +29,7 @@ class AudioManager {
     try {
       await this.audio.play();
       this.isPlaying = true;
+      this.userManuallyPaused = false;
       this.notify();
       return true;
     } catch {
@@ -41,6 +43,7 @@ class AudioManager {
     if (this.audio) {
       this.audio.pause();
       this.isPlaying = false;
+      this.userManuallyPaused = true;
       this.notify();
     }
   }
